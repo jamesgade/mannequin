@@ -75,18 +75,13 @@ class AddProductPageModel extends FlutterFlowModel {
   // State field(s) for purchaseTypeChoiceChips widget.
   String? purchaseTypeChoiceChipsValue;
   FormFieldController<List<String>>? purchaseTypeChoiceChipsValueController;
-  // State field(s) for AmazonTextField widget.
-  TextEditingController? amazonTextFieldController;
-  String? Function(BuildContext, String?)? amazonTextFieldControllerValidator;
+  // State field(s) for ProductLinkTextField widget.
+  TextEditingController? productLinkTextFieldController;
+  String? Function(BuildContext, String?)?
+      productLinkTextFieldControllerValidator;
   // State field(s) for WhatsappTextField widget.
   TextEditingController? whatsappTextFieldController;
   String? Function(BuildContext, String?)? whatsappTextFieldControllerValidator;
-  // State field(s) for MyntraTextField widget.
-  TextEditingController? myntraTextFieldController;
-  String? Function(BuildContext, String?)? myntraTextFieldControllerValidator;
-  // State field(s) for AjioTextField widget.
-  TextEditingController? ajioTextFieldController;
-  String? Function(BuildContext, String?)? ajioTextFieldControllerValidator;
   // Stores action output result for [Backend Call - Create Document] action in Button widget.
   ProductsRecord? addProductOutput;
 
@@ -103,10 +98,8 @@ class AddProductPageModel extends FlutterFlowModel {
     unfocusNode.dispose();
     productNameTextFieldController?.dispose();
     productDescriptionTextFieldController?.dispose();
-    amazonTextFieldController?.dispose();
+    productLinkTextFieldController?.dispose();
     whatsappTextFieldController?.dispose();
-    myntraTextFieldController?.dispose();
-    ajioTextFieldController?.dispose();
   }
 
   /// Action blocks are added here.

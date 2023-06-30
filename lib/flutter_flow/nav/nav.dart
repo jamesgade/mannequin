@@ -101,14 +101,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'ProfilePage',
           path: '/profilePage',
-          builder: (context, params) => ProfilePageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'ProfilePage')
+              : ProfilePageWidget(),
         ),
         FFRoute(
-          name: 'MyFavouritesPage',
-          path: '/myFavouritesPage',
+          name: 'Wishlist',
+          path: '/wishlist',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'MyFavouritesPage')
-              : MyFavouritesPageWidget(),
+              ? NavBarPage(initialPage: 'Wishlist')
+              : WishlistWidget(),
         ),
         FFRoute(
           name: 'AddProductPage',
@@ -154,13 +156,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'MyProducts',
           path: '/myProducts',
           builder: (context, params) => MyProductsWidget(),
-        ),
-        FFRoute(
-          name: 'Influencers',
-          path: '/influencers',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'Influencers')
-              : InfluencersWidget(),
         ),
         FFRoute(
           name: 'Trending',

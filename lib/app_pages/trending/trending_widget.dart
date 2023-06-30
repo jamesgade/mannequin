@@ -52,7 +52,7 @@ class _TrendingWidgetState extends State<TrendingWidget> {
           ),
           actions: [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 0.0,
         ),
         body: SafeArea(
           top: true,

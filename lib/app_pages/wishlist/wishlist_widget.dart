@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/empty_wishlist_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -8,25 +9,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'my_favourites_page_model.dart';
-export 'my_favourites_page_model.dart';
+import 'wishlist_model.dart';
+export 'wishlist_model.dart';
 
-class MyFavouritesPageWidget extends StatefulWidget {
-  const MyFavouritesPageWidget({Key? key}) : super(key: key);
+class WishlistWidget extends StatefulWidget {
+  const WishlistWidget({Key? key}) : super(key: key);
 
   @override
-  _MyFavouritesPageWidgetState createState() => _MyFavouritesPageWidgetState();
+  _WishlistWidgetState createState() => _WishlistWidgetState();
 }
 
-class _MyFavouritesPageWidgetState extends State<MyFavouritesPageWidget> {
-  late MyFavouritesPageModel _model;
+class _WishlistWidgetState extends State<WishlistWidget> {
+  late WishlistModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => MyFavouritesPageModel());
+    _model = createModel(context, () => WishlistModel());
   }
 
   @override
@@ -47,7 +48,7 @@ class _MyFavouritesPageWidgetState extends State<MyFavouritesPageWidget> {
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           title: Text(
-            'Favourites',
+            'Wishlist',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   color: Colors.white,
@@ -56,7 +57,7 @@ class _MyFavouritesPageWidgetState extends State<MyFavouritesPageWidget> {
           ),
           actions: [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 0.0,
         ),
         body: SafeArea(
           top: true,
@@ -87,6 +88,11 @@ class _MyFavouritesPageWidgetState extends State<MyFavouritesPageWidget> {
                   }
                   List<ProductsRecord> gridViewProductsRecordList =
                       snapshot.data!;
+                  if (gridViewProductsRecordList.isEmpty) {
+                    return Center(
+                      child: EmptyWishlistWidget(),
+                    );
+                  }
                   return GridView.builder(
                     padding: EdgeInsets.zero,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

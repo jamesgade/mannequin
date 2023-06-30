@@ -165,94 +165,157 @@ class _ProductDetailsPageWidgetState extends State<ProductDetailsPageWidget> {
                                       context.safePop();
                                     },
                                   ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        5.0, 5.0, 5.0, 5.0),
-                                    child: InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        if (functions.listContainsItem(
-                                            productDetailsPageProductsRecord
-                                                .favouritedUsers
-                                                .toList(),
-                                            currentUserUid)) {
-                                          await productDetailsPageProductsRecord
-                                              .reference
-                                              .update({
-                                            'favouritedUsers':
-                                                FieldValue.arrayRemove(
-                                                    [currentUserUid]),
-                                          });
-                                        } else {
-                                          await productDetailsPageProductsRecord
-                                              .reference
-                                              .update({
-                                            'favouritedUsers':
-                                                FieldValue.arrayUnion(
-                                                    [currentUserUid]),
-                                          });
-                                        }
-                                      },
-                                      child: Material(
-                                        color: Colors.transparent,
-                                        elevation: 1.0,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(50.0),
-                                        ),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(50.0),
-                                          ),
-                                          child: Stack(
-                                            children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      if (productDetailsPageProductsRecord
+                                              .uid !=
+                                          currentUserUid)
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  5.0, 5.0, 5.0, 5.0),
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
                                               if (functions.listContainsItem(
-                                                      productDetailsPageProductsRecord
-                                                          .favouritedUsers
-                                                          .toList(),
-                                                      currentUserUid) ==
-                                                  false)
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          5.0, 5.0, 5.0, 5.0),
-                                                  child: Icon(
-                                                    Icons.favorite_border_sharp,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    size: 22.0,
-                                                  ),
+                                                  productDetailsPageProductsRecord
+                                                      .favouritedUsers
+                                                      .toList(),
+                                                  currentUserUid)) {
+                                                await productDetailsPageProductsRecord
+                                                    .reference
+                                                    .update({
+                                                  'favouritedUsers':
+                                                      FieldValue.arrayRemove(
+                                                          [currentUserUid]),
+                                                });
+                                              } else {
+                                                await productDetailsPageProductsRecord
+                                                    .reference
+                                                    .update({
+                                                  'favouritedUsers':
+                                                      FieldValue.arrayUnion(
+                                                          [currentUserUid]),
+                                                });
+                                              }
+                                            },
+                                            child: Material(
+                                              color: Colors.transparent,
+                                              elevation: 1.0,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(50.0),
+                                              ),
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          50.0),
                                                 ),
-                                              if (functions.listContainsItem(
-                                                      productDetailsPageProductsRecord
-                                                          .favouritedUsers
-                                                          .toList(),
-                                                      currentUserUid) ==
-                                                  true)
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          5.0, 5.0, 5.0, 5.0),
-                                                  child: Icon(
-                                                    Icons.favorite_sharp,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .favourite,
-                                                    size: 22.0,
-                                                  ),
+                                                child: Stack(
+                                                  children: [
+                                                    if (functions.listContainsItem(
+                                                            productDetailsPageProductsRecord
+                                                                .favouritedUsers
+                                                                .toList(),
+                                                            currentUserUid) ==
+                                                        false)
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    5.0,
+                                                                    5.0,
+                                                                    5.0,
+                                                                    5.0),
+                                                        child: Icon(
+                                                          Icons
+                                                              .favorite_border_sharp,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          size: 22.0,
+                                                        ),
+                                                      ),
+                                                    if (functions.listContainsItem(
+                                                            productDetailsPageProductsRecord
+                                                                .favouritedUsers
+                                                                .toList(),
+                                                            currentUserUid) ==
+                                                        true)
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    5.0,
+                                                                    5.0,
+                                                                    5.0,
+                                                                    5.0),
+                                                        child: Icon(
+                                                          Icons.favorite_sharp,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .favourite,
+                                                          size: 22.0,
+                                                        ),
+                                                      ),
+                                                  ],
                                                 ),
-                                            ],
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ),
+                                      if (productDetailsPageProductsRecord
+                                              .uid ==
+                                          currentUserUid)
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  5.0, 5.0, 5.0, 5.0),
+                                          child: Material(
+                                            color: Colors.transparent,
+                                            elevation: 1.0,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(50.0),
+                                            ),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                borderRadius:
+                                                    BorderRadius.circular(50.0),
+                                              ),
+                                              child: Stack(
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(5.0, 5.0,
+                                                                5.0, 5.0),
+                                                    child: Icon(
+                                                      Icons.mode_edit,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      size: 22.0,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                    ],
                                   ),
                                 ],
                               ),
@@ -585,6 +648,59 @@ class _ProductDetailsPageWidgetState extends State<ProductDetailsPageWidget> {
                                             0.0, 0.0, 10.0, 0.0),
                                         child: Text(
                                           'visit ajio',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyLarge
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                              ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          if (productDetailsPageProductsRecord.purchaseType ==
+                              'crazymonk')
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 5.0, 0.0, 0.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  await launchURL(
+                                      productDetailsPageProductsRecord
+                                          .linkToBuy);
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 5.0, 5.0, 5.0),
+                                        child: FaIcon(
+                                          FontAwesomeIcons.userTie,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondary,
+                                          size: 20.0,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 10.0, 0.0),
+                                        child: Text(
+                                          'visit crazymonk',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyLarge
                                               .override(

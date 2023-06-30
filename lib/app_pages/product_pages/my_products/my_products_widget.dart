@@ -1,5 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/empty_my_products_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +46,20 @@ class _MyProductsWidgetState extends State<MyProductsWidget> {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
+            icon: Icon(
+              Icons.arrow_back_rounded,
+              color: Colors.white,
+              size: 30.0,
+            ),
+            onPressed: () async {
+              context.pop();
+            },
+          ),
           title: Text(
             'My Products',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -85,6 +101,9 @@ class _MyProductsWidgetState extends State<MyProductsWidget> {
                   }
                   List<ProductsRecord> gridViewProductsRecordList =
                       snapshot.data!;
+                  if (gridViewProductsRecordList.isEmpty) {
+                    return EmptyMyProductsWidget();
+                  }
                   return GridView.builder(
                     padding: EdgeInsets.zero,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

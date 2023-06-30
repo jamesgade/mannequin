@@ -120,8 +120,8 @@ class _NavBarPageState extends State<NavBarPage> {
       'FeedPage': FeedPageWidget(),
       'Trending': TrendingWidget(),
       'AddProductPage': AddProductPageWidget(),
-      'Influencers': InfluencersWidget(),
-      'MyFavouritesPage': MyFavouritesPageWidget(),
+      'Wishlist': WishlistWidget(),
+      'ProfilePage': ProfilePageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -174,18 +174,6 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.person_search_outlined,
-              size: 26.0,
-            ),
-            activeIcon: Icon(
-              Icons.person_search,
-              size: 26.0,
-            ),
-            label: 'Influencers',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
               Icons.favorite_border,
               size: 26.0,
             ),
@@ -194,6 +182,18 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 26.0,
             ),
             label: 'Favourites',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person_outline,
+              size: 26.0,
+            ),
+            activeIcon: Icon(
+              Icons.person,
+              size: 26.0,
+            ),
+            label: 'Influencers',
             tooltip: '',
           )
         ],

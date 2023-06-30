@@ -37,10 +37,8 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
 
     _model.productNameTextFieldController ??= TextEditingController();
     _model.productDescriptionTextFieldController ??= TextEditingController();
-    _model.amazonTextFieldController ??= TextEditingController();
+    _model.productLinkTextFieldController ??= TextEditingController();
     _model.whatsappTextFieldController ??= TextEditingController();
-    _model.myntraTextFieldController ??= TextEditingController();
-    _model.ajioTextFieldController ??= TextEditingController();
   }
 
   @override
@@ -619,7 +617,11 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
                                               ChipData('myntra',
                                                   FontAwesomeIcons.tshirt),
                                               ChipData('ajio',
-                                                  FontAwesomeIcons.userTie)
+                                                  FontAwesomeIcons.userTie),
+                                              ChipData('crazymonk',
+                                                  Icons.crisis_alert),
+                                              ChipData('flipkart',
+                                                  Icons.shopping_cart_outlined)
                                             ],
                                             onChanged: (val) => setState(() =>
                                                 _model.purchaseTypeChoiceChipsValue =
@@ -685,8 +687,8 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
                                       ),
                                     ),
                                   ),
-                                  if (_model.purchaseTypeChoiceChipsValue ==
-                                      'amazon')
+                                  if (_model.purchaseTypeChoiceChipsValue !=
+                                      'whatsapp')
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 12.0, 0.0, 0.0),
@@ -695,17 +697,17 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
                                             MediaQuery.sizeOf(context).width *
                                                 1.0,
                                         child: TextFormField(
-                                          controller:
-                                              _model.amazonTextFieldController,
+                                          controller: _model
+                                              .productLinkTextFieldController,
                                           onChanged: (_) =>
                                               EasyDebounce.debounce(
-                                            '_model.amazonTextFieldController',
+                                            '_model.productLinkTextFieldController',
                                             Duration(milliseconds: 200),
                                             () => setState(() {}),
                                           ),
                                           obscureText: false,
                                           decoration: InputDecoration(
-                                            labelText: 'Amazon Link',
+                                            labelText: 'Product Link',
                                             labelStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .labelMedium,
@@ -758,7 +760,7 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
                                               .bodyLarge,
                                           keyboardType: TextInputType.url,
                                           validator: _model
-                                              .amazonTextFieldControllerValidator
+                                              .productLinkTextFieldControllerValidator
                                               .asValidator(context),
                                         ),
                                       ),
@@ -841,162 +843,6 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
                                         ),
                                       ),
                                     ),
-                                  if (_model.purchaseTypeChoiceChipsValue ==
-                                      'myntra')
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 12.0, 0.0, 0.0),
-                                      child: Container(
-                                        width:
-                                            MediaQuery.sizeOf(context).width *
-                                                1.0,
-                                        child: TextFormField(
-                                          controller:
-                                              _model.myntraTextFieldController,
-                                          onChanged: (_) =>
-                                              EasyDebounce.debounce(
-                                            '_model.myntraTextFieldController',
-                                            Duration(milliseconds: 200),
-                                            () => setState(() {}),
-                                          ),
-                                          obscureText: false,
-                                          decoration: InputDecoration(
-                                            labelText: 'Myntra Link',
-                                            labelStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium,
-                                            hintStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelLarge,
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                            focusedErrorBorder:
-                                                OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyLarge,
-                                          keyboardType: TextInputType.number,
-                                          validator: _model
-                                              .myntraTextFieldControllerValidator
-                                              .asValidator(context),
-                                        ),
-                                      ),
-                                    ),
-                                  if (_model.purchaseTypeChoiceChipsValue ==
-                                      'ajio')
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 12.0, 0.0, 0.0),
-                                      child: Container(
-                                        width:
-                                            MediaQuery.sizeOf(context).width *
-                                                1.0,
-                                        child: TextFormField(
-                                          controller:
-                                              _model.ajioTextFieldController,
-                                          onChanged: (_) =>
-                                              EasyDebounce.debounce(
-                                            '_model.ajioTextFieldController',
-                                            Duration(milliseconds: 200),
-                                            () => setState(() {}),
-                                          ),
-                                          obscureText: false,
-                                          decoration: InputDecoration(
-                                            labelText: 'Ajio Link',
-                                            labelStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium,
-                                            hintStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelLarge,
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                            focusedErrorBorder:
-                                                OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyLarge,
-                                          keyboardType: TextInputType.number,
-                                          validator: _model
-                                              .ajioTextFieldControllerValidator
-                                              .asValidator(context),
-                                        ),
-                                      ),
-                                    ),
                                 ],
                               ),
                             ),
@@ -1071,11 +917,14 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
                                     userRef: currentUserReference,
                                     purchaseType:
                                         _model.purchaseTypeChoiceChipsValue,
-                                    linkToBuy: _model
-                                                .purchaseTypeChoiceChipsValue ==
-                                            'amazon'
-                                        ? _model.amazonTextFieldController.text
-                                        : _model.myntraTextFieldController.text,
+                                    linkToBuy:
+                                        _model.purchaseTypeChoiceChipsValue ==
+                                                'whatsapp'
+                                            ? _model.whatsappTextFieldController
+                                                .text
+                                            : _model
+                                                .productLinkTextFieldController
+                                                .text,
                                     category: _model.categoryDropDownValue,
                                     size: _model.sizeDropDownValue,
                                     uid: currentUserUid,
@@ -1095,11 +944,14 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
                                     userRef: currentUserReference,
                                     purchaseType:
                                         _model.purchaseTypeChoiceChipsValue,
-                                    linkToBuy: _model
-                                                .purchaseTypeChoiceChipsValue ==
-                                            'amazon'
-                                        ? _model.amazonTextFieldController.text
-                                        : _model.myntraTextFieldController.text,
+                                    linkToBuy:
+                                        _model.purchaseTypeChoiceChipsValue ==
+                                                'whatsapp'
+                                            ? _model.whatsappTextFieldController
+                                                .text
+                                            : _model
+                                                .productLinkTextFieldController
+                                                .text,
                                     category: _model.categoryDropDownValue,
                                     size: _model.sizeDropDownValue,
                                     uid: currentUserUid,
@@ -1107,7 +959,7 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
                                   'favouritedUsers': [' '],
                                 }, productsRecordReference);
 
-                                context.goNamed('FeedPage');
+                                context.goNamed('MyProducts');
 
                                 setState(() {});
                               },
