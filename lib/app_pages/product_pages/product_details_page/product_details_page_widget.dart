@@ -1,8 +1,10 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -166,45 +168,88 @@ class _ProductDetailsPageWidgetState extends State<ProductDetailsPageWidget> {
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         5.0, 5.0, 5.0, 5.0),
-                                    child: Material(
-                                      color: Colors.transparent,
-                                      elevation: 1.0,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(50.0),
-                                      ),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        if (functions.listContainsItem(
+                                            productDetailsPageProductsRecord
+                                                .favouritedUsers
+                                                .toList(),
+                                            currentUserUid)) {
+                                          await productDetailsPageProductsRecord
+                                              .reference
+                                              .update({
+                                            'favouritedUsers':
+                                                FieldValue.arrayRemove(
+                                                    [currentUserUid]),
+                                          });
+                                        } else {
+                                          await productDetailsPageProductsRecord
+                                              .reference
+                                              .update({
+                                            'favouritedUsers':
+                                                FieldValue.arrayUnion(
+                                                    [currentUserUid]),
+                                          });
+                                        }
+                                      },
+                                      child: Material(
+                                        color: Colors.transparent,
+                                        elevation: 1.0,
+                                        shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(50.0),
                                         ),
-                                        child: Stack(
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(5.0, 5.0, 5.0, 5.0),
-                                              child: Icon(
-                                                Icons.favorite_border_sharp,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(50.0),
+                                          ),
+                                          child: Stack(
+                                            children: [
+                                              if (functions.listContainsItem(
+                                                      productDetailsPageProductsRecord
+                                                          .favouritedUsers
+                                                          .toList(),
+                                                      currentUserUid) ==
+                                                  false)
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          5.0, 5.0, 5.0, 5.0),
+                                                  child: Icon(
+                                                    Icons.favorite_border_sharp,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
                                                         .secondaryText,
-                                                size: 22.0,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(5.0, 5.0, 5.0, 5.0),
-                                              child: Icon(
-                                                Icons.favorite_sharp,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
+                                                    size: 22.0,
+                                                  ),
+                                                ),
+                                              if (functions.listContainsItem(
+                                                      productDetailsPageProductsRecord
+                                                          .favouritedUsers
+                                                          .toList(),
+                                                      currentUserUid) ==
+                                                  true)
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          5.0, 5.0, 5.0, 5.0),
+                                                  child: Icon(
+                                                    Icons.favorite_sharp,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
                                                         .favourite,
-                                                size: 22.0,
-                                              ),
-                                            ),
-                                          ],
+                                                    size: 22.0,
+                                                  ),
+                                                ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -279,7 +324,7 @@ class _ProductDetailsPageWidgetState extends State<ProductDetailsPageWidget> {
                             style: FlutterFlowTheme.of(context).labelLarge,
                           ),
                           Text(
-                            productDetailsPageProductsRecord.gender,
+                            productDetailsPageProductsRecord.size,
                             style: FlutterFlowTheme.of(context).bodyLarge,
                           ),
                         ],

@@ -101,9 +101,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'ProfilePage',
           path: '/profilePage',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'ProfilePage')
-              : ProfilePageWidget(),
+          builder: (context, params) => ProfilePageWidget(),
         ),
         FFRoute(
           name: 'MyFavouritesPage',
@@ -151,6 +149,25 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'SignInOptionsPage',
           path: '/signInOptionsPage',
           builder: (context, params) => SignInOptionsPageWidget(),
+        ),
+        FFRoute(
+          name: 'MyProducts',
+          path: '/myProducts',
+          builder: (context, params) => MyProductsWidget(),
+        ),
+        FFRoute(
+          name: 'Influencers',
+          path: '/influencers',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'Influencers')
+              : InfluencersWidget(),
+        ),
+        FFRoute(
+          name: 'Trending',
+          path: '/trending',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'Trending')
+              : TrendingWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

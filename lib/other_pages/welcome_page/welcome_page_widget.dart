@@ -99,6 +99,8 @@ class _WelcomePageWidgetState extends State<WelcomePageWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               context.pushNamed('SignUpWithEmailPage');
+
+                              context.safePop();
                             },
                             text: 'Sign up with e-mail',
                             options: FFButtonOptions(

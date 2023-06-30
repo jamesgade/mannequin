@@ -1078,6 +1078,7 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
                                         : _model.myntraTextFieldController.text,
                                     category: _model.categoryDropDownValue,
                                     size: _model.sizeDropDownValue,
+                                    uid: currentUserUid,
                                   ),
                                   'favouritedUsers': [' '],
                                 });
@@ -1101,6 +1102,7 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
                                         : _model.myntraTextFieldController.text,
                                     category: _model.categoryDropDownValue,
                                     size: _model.sizeDropDownValue,
+                                    uid: currentUserUid,
                                   ),
                                   'favouritedUsers': [' '],
                                 }, productsRecordReference);

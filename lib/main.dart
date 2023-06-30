@@ -118,9 +118,10 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'FeedPage': FeedPageWidget(),
+      'Trending': TrendingWidget(),
       'AddProductPage': AddProductPageWidget(),
+      'Influencers': InfluencersWidget(),
       'MyFavouritesPage': MyFavouritesPageWidget(),
-      'ProfilePage': ProfilePageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -135,56 +136,64 @@ class _NavBarPageState extends State<NavBarPage> {
         backgroundColor: Colors.white,
         selectedItemColor: FlutterFlowTheme.of(context).primary,
         unselectedItemColor: FlutterFlowTheme.of(context).primaryText,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.dynamic_feed_sharp,
-              size: 22.0,
+              Icons.home_outlined,
+              size: 26.0,
             ),
             activeIcon: Icon(
-              Icons.dynamic_feed_rounded,
-              size: 22.0,
+              Icons.home_sharp,
+              size: 26.0,
             ),
             label: 'Feed',
             tooltip: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.add,
-              size: 22.0,
+              Icons.local_fire_department_outlined,
+              size: 26.0,
             ),
             activeIcon: Icon(
+              Icons.local_fire_department_rounded,
+              size: 26.0,
+            ),
+            label: 'Trending',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
               Icons.add_circle,
-              size: 22.0,
+              size: 36.0,
             ),
             label: 'Add',
             tooltip: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.favorite_border,
-              size: 22.0,
+              Icons.person_search_outlined,
+              size: 26.0,
             ),
             activeIcon: Icon(
-              Icons.favorite,
-              size: 22.0,
+              Icons.person_search,
+              size: 26.0,
             ),
-            label: 'Favourites',
+            label: 'Influencers',
             tooltip: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.person_outline,
-              size: 22.0,
+              Icons.favorite_border,
+              size: 26.0,
             ),
             activeIcon: Icon(
-              Icons.person,
-              size: 22.0,
+              Icons.favorite,
+              size: 26.0,
             ),
-            label: 'Profile',
+            label: 'Favourites',
             tooltip: '',
           )
         ],

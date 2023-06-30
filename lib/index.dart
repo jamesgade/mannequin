@@ -20,3 +20,6 @@ export '/app_pages/product_pages/product_details_page/product_details_page_widge
     show ProductDetailsPageWidget;
 export '/other_pages/sign_in_options_page/sign_in_options_page_widget.dart'
     show SignInOptionsPageWidget;
+export '/app_pages/my_products/my_products_widget.dart' show MyProductsWidget;
+export '/app_pages/influencers/influencers_widget.dart' show InfluencersWidget;
+export '/app_pages/trending/trending_widget.dart' show TrendingWidget;
