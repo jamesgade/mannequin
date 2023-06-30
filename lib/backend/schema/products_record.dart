@@ -81,6 +81,11 @@ class ProductsRecord extends FirestoreRecord {
   String get size => _size ?? '';
   bool hasSize() => _size != null;
 
+  // "favouritedUsers" field.
+  List<String>? _favouritedUsers;
+  List<String> get favouritedUsers => _favouritedUsers ?? const [];
+  bool hasFavouritedUsers() => _favouritedUsers != null;
+
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
     _description = snapshotData['description'] as String?;
@@ -95,6 +100,7 @@ class ProductsRecord extends FirestoreRecord {
     _linkToBuy = snapshotData['linkToBuy'] as String?;
     _subcategory = snapshotData['subcategory'] as String?;
     _size = snapshotData['size'] as String?;
+    _favouritedUsers = getDataList(snapshotData['favouritedUsers']);
   }
 
   static CollectionReference get collection =>
@@ -183,7 +189,8 @@ class ProductsRecordDocumentEquality implements Equality<ProductsRecord> {
         e1?.purchaseType == e2?.purchaseType &&
         e1?.linkToBuy == e2?.linkToBuy &&
         e1?.subcategory == e2?.subcategory &&
-        e1?.size == e2?.size;
+        e1?.size == e2?.size &&
+        listEquality.equals(e1?.favouritedUsers, e2?.favouritedUsers);
   }
 
   @override
@@ -200,7 +207,8 @@ class ProductsRecordDocumentEquality implements Equality<ProductsRecord> {
         e?.purchaseType,
         e?.linkToBuy,
         e?.subcategory,
-        e?.size
+        e?.size,
+        e?.favouritedUsers
       ]);
 
   @override

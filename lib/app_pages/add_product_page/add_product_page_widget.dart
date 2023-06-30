@@ -1059,53 +1059,51 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
 
                                 var productsRecordReference =
                                     ProductsRecord.collection.doc();
-                                await productsRecordReference
-                                    .set(createProductsRecordData(
-                                  name: _model
-                                      .productNameTextFieldController.text,
-                                  description: _model
-                                      .productDescriptionTextFieldController
-                                      .text,
-                                  thumbnail: _model.uploadedFileUrl,
-                                  gender: _model.genderDropDownValue,
-                                  userRef: currentUserReference,
-                                  purchaseType:
-                                      _model.purchaseTypeChoiceChipsValue,
-                                  linkToBuy: _model
-                                              .purchaseTypeChoiceChipsValue ==
-                                          'amazon'
-                                      ? _model.amazonTextFieldController.text
-                                      : _model.myntraTextFieldController.text,
-                                  category: _model.categoryDropDownValue,
-                                ));
+                                await productsRecordReference.set({
+                                  ...createProductsRecordData(
+                                    name: _model
+                                        .productNameTextFieldController.text,
+                                    description: _model
+                                        .productDescriptionTextFieldController
+                                        .text,
+                                    thumbnail: _model.uploadedFileUrl,
+                                    gender: _model.genderDropDownValue,
+                                    userRef: currentUserReference,
+                                    purchaseType:
+                                        _model.purchaseTypeChoiceChipsValue,
+                                    linkToBuy: _model
+                                                .purchaseTypeChoiceChipsValue ==
+                                            'amazon'
+                                        ? _model.amazonTextFieldController.text
+                                        : _model.myntraTextFieldController.text,
+                                    category: _model.categoryDropDownValue,
+                                    size: _model.sizeDropDownValue,
+                                  ),
+                                  'favouritedUsers': [' '],
+                                });
                                 _model.addProductOutput =
-                                    ProductsRecord.getDocumentFromData(
-                                        createProductsRecordData(
-                                          name: _model
-                                              .productNameTextFieldController
-                                              .text,
-                                          description: _model
-                                              .productDescriptionTextFieldController
-                                              .text,
-                                          thumbnail: _model.uploadedFileUrl,
-                                          gender: _model.genderDropDownValue,
-                                          userRef: currentUserReference,
-                                          purchaseType: _model
-                                              .purchaseTypeChoiceChipsValue,
-                                          linkToBuy:
-                                              _model
-                                                          .purchaseTypeChoiceChipsValue ==
-                                                      'amazon'
-                                                  ? _model
-                                                      .amazonTextFieldController
-                                                      .text
-                                                  : _model
-                                                      .myntraTextFieldController
-                                                      .text,
-                                          category:
-                                              _model.categoryDropDownValue,
-                                        ),
-                                        productsRecordReference);
+                                    ProductsRecord.getDocumentFromData({
+                                  ...createProductsRecordData(
+                                    name: _model
+                                        .productNameTextFieldController.text,
+                                    description: _model
+                                        .productDescriptionTextFieldController
+                                        .text,
+                                    thumbnail: _model.uploadedFileUrl,
+                                    gender: _model.genderDropDownValue,
+                                    userRef: currentUserReference,
+                                    purchaseType:
+                                        _model.purchaseTypeChoiceChipsValue,
+                                    linkToBuy: _model
+                                                .purchaseTypeChoiceChipsValue ==
+                                            'amazon'
+                                        ? _model.amazonTextFieldController.text
+                                        : _model.myntraTextFieldController.text,
+                                    category: _model.categoryDropDownValue,
+                                    size: _model.sizeDropDownValue,
+                                  ),
+                                  'favouritedUsers': [' '],
+                                }, productsRecordReference);
 
                                 context.goNamed('FeedPage');
 
