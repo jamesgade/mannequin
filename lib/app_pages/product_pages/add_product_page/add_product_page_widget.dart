@@ -928,6 +928,7 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
                                     category: _model.categoryDropDownValue,
                                     size: _model.sizeDropDownValue,
                                     uid: currentUserUid,
+                                    influencerName: currentUserDisplayName,
                                   ),
                                   'favouritedUsers': [' '],
                                 });
@@ -955,6 +956,7 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
                                     category: _model.categoryDropDownValue,
                                     size: _model.sizeDropDownValue,
                                     uid: currentUserUid,
+                                    influencerName: currentUserDisplayName,
                                   ),
                                   'favouritedUsers': [' '],
                                 }, productsRecordReference);

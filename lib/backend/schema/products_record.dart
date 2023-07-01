@@ -91,6 +91,11 @@ class ProductsRecord extends FirestoreRecord {
   String get uid => _uid ?? '';
   bool hasUid() => _uid != null;
 
+  // "influencerName" field.
+  String? _influencerName;
+  String get influencerName => _influencerName ?? '';
+  bool hasInfluencerName() => _influencerName != null;
+
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
     _description = snapshotData['description'] as String?;
@@ -107,6 +112,7 @@ class ProductsRecord extends FirestoreRecord {
     _size = snapshotData['size'] as String?;
     _favouritedUsers = getDataList(snapshotData['favouritedUsers']);
     _uid = snapshotData['uid'] as String?;
+    _influencerName = snapshotData['influencerName'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -157,6 +163,7 @@ Map<String, dynamic> createProductsRecordData({
   String? subcategory,
   String? size,
   String? uid,
+  String? influencerName,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -173,6 +180,7 @@ Map<String, dynamic> createProductsRecordData({
       'subcategory': subcategory,
       'size': size,
       'uid': uid,
+      'influencerName': influencerName,
     }.withoutNulls,
   );
 
@@ -199,7 +207,8 @@ class ProductsRecordDocumentEquality implements Equality<ProductsRecord> {
         e1?.subcategory == e2?.subcategory &&
         e1?.size == e2?.size &&
         listEquality.equals(e1?.favouritedUsers, e2?.favouritedUsers) &&
-        e1?.uid == e2?.uid;
+        e1?.uid == e2?.uid &&
+        e1?.influencerName == e2?.influencerName;
   }
 
   @override
@@ -218,7 +227,8 @@ class ProductsRecordDocumentEquality implements Equality<ProductsRecord> {
         e?.subcategory,
         e?.size,
         e?.favouritedUsers,
-        e?.uid
+        e?.uid,
+        e?.influencerName
       ]);
 
   @override
