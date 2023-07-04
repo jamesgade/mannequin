@@ -22,3 +22,5 @@ export '/other_pages/sign_in_options_page/sign_in_options_page_widget.dart'
 export '/app_pages/product_pages/my_products/my_products_widget.dart'
     show MyProductsWidget;
 export '/app_pages/trending/trending_widget.dart' show TrendingWidget;
+export '/app_pages/feed_page_copy/feed_page_copy_widget.dart'
+    show FeedPageCopyWidget;

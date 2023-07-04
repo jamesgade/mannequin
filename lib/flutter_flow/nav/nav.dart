@@ -163,6 +163,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'Trending')
               : TrendingWidget(),
+        ),
+        FFRoute(
+          name: 'FeedPageCopy',
+          path: '/feedPageCopy',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'FeedPageCopy')
+              : FeedPageCopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

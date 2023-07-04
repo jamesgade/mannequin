@@ -621,7 +621,9 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
                                               ChipData('crazymonk',
                                                   Icons.crisis_alert),
                                               ChipData('flipkart',
-                                                  Icons.shopping_cart_outlined)
+                                                  Icons.shopping_cart_outlined),
+                                              ChipData('meesho',
+                                                  FontAwesomeIcons.meetup)
                                             ],
                                             onChanged: (val) => setState(() =>
                                                 _model.purchaseTypeChoiceChipsValue =
