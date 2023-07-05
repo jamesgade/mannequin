@@ -1,6 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/ccmponents/empty_lists/empty_feed/empty_feed_widget.dart';
+import '/ccmponents/empty_lists/empty_wishlist/empty_wishlist_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -11,25 +11,25 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'feed_page_model.dart';
-export 'feed_page_model.dart';
+import 'wishlist_page_model.dart';
+export 'wishlist_page_model.dart';
 
-class FeedPageWidget extends StatefulWidget {
-  const FeedPageWidget({Key? key}) : super(key: key);
+class WishlistPageWidget extends StatefulWidget {
+  const WishlistPageWidget({Key? key}) : super(key: key);
 
   @override
-  _FeedPageWidgetState createState() => _FeedPageWidgetState();
+  _WishlistPageWidgetState createState() => _WishlistPageWidgetState();
 }
 
-class _FeedPageWidgetState extends State<FeedPageWidget> {
-  late FeedPageModel _model;
+class _WishlistPageWidgetState extends State<WishlistPageWidget> {
+  late WishlistPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => FeedPageModel());
+    _model = createModel(context, () => WishlistPageModel());
   }
 
   @override
@@ -123,7 +123,7 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Text(
-                                'Discover new styles',
+                                'Wishlist',
                                 style: FlutterFlowTheme.of(context)
                                     .titleLarge
                                     .override(
@@ -142,8 +142,9 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                             16.0, 16.0, 16.0, 16.0),
                         child: StreamBuilder<List<ProductsRecord>>(
                           stream: queryProductsRecord(
-                            queryBuilder: (productsRecord) => productsRecord
-                                .where('uid', isNotEqualTo: currentUserUid),
+                            queryBuilder: (productsRecord) =>
+                                productsRecord.where('favouritedUsers',
+                                    arrayContains: currentUserUid),
                           ),
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
@@ -163,7 +164,7 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                 snapshot.data!;
                             if (gridViewProductsRecordList.isEmpty) {
                               return Center(
-                                child: EmptyFeedWidget(),
+                                child: EmptyWishlistWidget(),
                               );
                             }
                             return GridView.builder(

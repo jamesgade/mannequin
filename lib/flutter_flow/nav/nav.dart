@@ -106,11 +106,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : ProfilePageWidget(),
         ),
         FFRoute(
-          name: 'Wishlist',
-          path: '/wishlist',
+          name: 'WishlistPage',
+          path: '/wishlistPage',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'Wishlist')
-              : WishlistWidget(),
+              ? NavBarPage(initialPage: 'WishlistPage')
+              : WishlistPageWidget(),
         ),
         FFRoute(
           name: 'AddProductPage',
@@ -153,23 +153,24 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => SignInOptionsPageWidget(),
         ),
         FFRoute(
-          name: 'MyProducts',
-          path: '/myProducts',
-          builder: (context, params) => MyProductsWidget(),
+          name: 'MyProductsPage',
+          path: '/myProductsPage',
+          builder: (context, params) => MyProductsPageWidget(),
         ),
         FFRoute(
-          name: 'Trending',
-          path: '/trending',
+          name: 'TrendingPage',
+          path: '/trendingPage',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'Trending')
-              : TrendingWidget(),
+              ? NavBarPage(initialPage: 'TrendingPage')
+              : TrendingPageWidget(),
         ),
         FFRoute(
-          name: 'FeedPageCopy',
-          path: '/feedPageCopy',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'FeedPageCopy')
-              : FeedPageCopyWidget(),
+          name: 'EditProductPage',
+          path: '/editProductPage',
+          builder: (context, params) => EditProductPageWidget(
+            productDataRef: params.getParam('productDataRef',
+                ParamType.DocumentReference, false, ['products']),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

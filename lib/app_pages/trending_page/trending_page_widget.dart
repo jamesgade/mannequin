@@ -6,25 +6,25 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'trending_model.dart';
-export 'trending_model.dart';
+import 'trending_page_model.dart';
+export 'trending_page_model.dart';
 
-class TrendingWidget extends StatefulWidget {
-  const TrendingWidget({Key? key}) : super(key: key);
+class TrendingPageWidget extends StatefulWidget {
+  const TrendingPageWidget({Key? key}) : super(key: key);
 
   @override
-  _TrendingWidgetState createState() => _TrendingWidgetState();
+  _TrendingPageWidgetState createState() => _TrendingPageWidgetState();
 }
 
-class _TrendingWidgetState extends State<TrendingWidget> {
-  late TrendingModel _model;
+class _TrendingPageWidgetState extends State<TrendingPageWidget> {
+  late TrendingPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => TrendingModel());
+    _model = createModel(context, () => TrendingPageModel());
   }
 
   @override

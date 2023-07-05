@@ -118,11 +118,10 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'FeedPage': FeedPageWidget(),
-      'Trending': TrendingWidget(),
+      'TrendingPage': TrendingPageWidget(),
       'AddProductPage': AddProductPageWidget(),
-      'Wishlist': WishlistWidget(),
+      'WishlistPage': WishlistPageWidget(),
       'ProfilePage': ProfilePageWidget(),
-      'FeedPageCopy': FeedPageCopyWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -195,18 +194,6 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 26.0,
             ),
             label: 'Influencers',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_outlined,
-              size: 26.0,
-            ),
-            activeIcon: Icon(
-              Icons.home_sharp,
-              size: 26.0,
-            ),
-            label: 'Feed',
             tooltip: '',
           )
         ],

@@ -1,35 +1,33 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/ccmponents/empty_lists/empty_feed/empty_feed_widget.dart';
+import '/ccmponents/empty_lists/empty_my_products/empty_my_products_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:badges/badges.dart' as badges;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'feed_page_model.dart';
-export 'feed_page_model.dart';
+import 'my_products_page_model.dart';
+export 'my_products_page_model.dart';
 
-class FeedPageWidget extends StatefulWidget {
-  const FeedPageWidget({Key? key}) : super(key: key);
+class MyProductsPageWidget extends StatefulWidget {
+  const MyProductsPageWidget({Key? key}) : super(key: key);
 
   @override
-  _FeedPageWidgetState createState() => _FeedPageWidgetState();
+  _MyProductsPageWidgetState createState() => _MyProductsPageWidgetState();
 }
 
-class _FeedPageWidgetState extends State<FeedPageWidget> {
-  late FeedPageModel _model;
+class _MyProductsPageWidgetState extends State<MyProductsPageWidget> {
+  late MyProductsPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => FeedPageModel());
+    _model = createModel(context, () => MyProductsPageModel());
   }
 
   @override
@@ -123,7 +121,7 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Text(
-                                'Discover new styles',
+                                'My Products',
                                 style: FlutterFlowTheme.of(context)
                                     .titleLarge
                                     .override(
@@ -143,7 +141,7 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                         child: StreamBuilder<List<ProductsRecord>>(
                           stream: queryProductsRecord(
                             queryBuilder: (productsRecord) => productsRecord
-                                .where('uid', isNotEqualTo: currentUserUid),
+                                .where('uid', isEqualTo: currentUserUid),
                           ),
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
@@ -162,9 +160,7 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                             List<ProductsRecord> gridViewProductsRecordList =
                                 snapshot.data!;
                             if (gridViewProductsRecordList.isEmpty) {
-                              return Center(
-                                child: EmptyFeedWidget(),
-                              );
+                              return EmptyMyProductsWidget();
                             }
                             return GridView.builder(
                               padding: EdgeInsets.zero,
@@ -284,112 +280,47 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                                                     5.0,
                                                                     5.0,
                                                                     5.0),
-                                                        child: InkWell(
-                                                          splashColor: Colors
+                                                        child: Material(
+                                                          color: Colors
                                                               .transparent,
-                                                          focusColor: Colors
-                                                              .transparent,
-                                                          hoverColor: Colors
-                                                              .transparent,
-                                                          highlightColor: Colors
-                                                              .transparent,
-                                                          onTap: () async {
-                                                            if (functions.listContainsItem(
-                                                                gridViewProductsRecord
-                                                                    .favouritedUsers
-                                                                    .toList(),
-                                                                currentUserUid)) {
-                                                              await gridViewProductsRecord
-                                                                  .reference
-                                                                  .update({
-                                                                'favouritedUsers':
-                                                                    FieldValue
-                                                                        .arrayRemove([
-                                                                  currentUserUid
-                                                                ]),
-                                                              });
-                                                            } else {
-                                                              await gridViewProductsRecord
-                                                                  .reference
-                                                                  .update({
-                                                                'favouritedUsers':
-                                                                    FieldValue
-                                                                        .arrayUnion([
-                                                                  currentUserUid
-                                                                ]),
-                                                              });
-                                                            }
-                                                          },
-                                                          child: Material(
-                                                            color: Colors
-                                                                .transparent,
-                                                            elevation: 1.0,
-                                                            shape:
-                                                                RoundedRectangleBorder(
+                                                          elevation: 1.0,
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        50.0),
+                                                          ),
+                                                          child: Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
                                                                           50.0),
                                                             ),
-                                                            child: Container(
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            50.0),
-                                                              ),
-                                                              child: Stack(
-                                                                children: [
-                                                                  if (functions.listContainsItem(
-                                                                          gridViewProductsRecord
-                                                                              .favouritedUsers
-                                                                              .toList(),
-                                                                          currentUserUid) ==
-                                                                      false)
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                            child: Stack(
+                                                              children: [
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
                                                                           5.0,
                                                                           5.0,
                                                                           5.0,
                                                                           5.0),
-                                                                      child:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .favorite_border_sharp,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryText,
-                                                                        size:
-                                                                            22.0,
-                                                                      ),
-                                                                    ),
-                                                                  if (functions.listContainsItem(
-                                                                          gridViewProductsRecord
-                                                                              .favouritedUsers
-                                                                              .toList(),
-                                                                          currentUserUid) ==
-                                                                      true)
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          5.0,
-                                                                          5.0,
-                                                                          5.0,
-                                                                          5.0),
-                                                                      child:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .favorite_sharp,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .favourite,
-                                                                        size:
-                                                                            22.0,
-                                                                      ),
-                                                                    ),
-                                                                ],
-                                                              ),
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .mode_edit,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    size: 22.0,
+                                                                  ),
+                                                                ),
+                                                              ],
                                                             ),
                                                           ),
                                                         ),

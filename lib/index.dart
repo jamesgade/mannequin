@@ -4,7 +4,8 @@ export '/auth_pages/sign_in/sign_in_with_email_page/sign_in_with_email_page_widg
 export '/app_pages/feed_page/feed_page_widget.dart' show FeedPageWidget;
 export '/app_pages/profile_page/profile_page_widget.dart'
     show ProfilePageWidget;
-export '/app_pages/wishlist/wishlist_widget.dart' show WishlistWidget;
+export '/app_pages/wishlist_page/wishlist_page_widget.dart'
+    show WishlistPageWidget;
 export '/app_pages/product_pages/add_product_page/add_product_page_widget.dart'
     show AddProductPageWidget;
 export '/auth_pages/sign_up/sign_up_with_email_page/sign_up_with_email_page_widget.dart'
@@ -19,8 +20,9 @@ export '/app_pages/product_pages/product_details_page/product_details_page_widge
     show ProductDetailsPageWidget;
 export '/other_pages/sign_in_options_page/sign_in_options_page_widget.dart'
     show SignInOptionsPageWidget;
-export '/app_pages/product_pages/my_products/my_products_widget.dart'
-    show MyProductsWidget;
-export '/app_pages/trending/trending_widget.dart' show TrendingWidget;
-export '/app_pages/feed_page_copy/feed_page_copy_widget.dart'
-    show FeedPageCopyWidget;
+export '/app_pages/product_pages/my_products_page/my_products_page_widget.dart'
+    show MyProductsPageWidget;
+export '/app_pages/trending_page/trending_page_widget.dart'
+    show TrendingPageWidget;
+export '/app_pages/product_pages/edit_product_page/edit_product_page_widget.dart'
+    show EditProductPageWidget;

@@ -963,7 +963,7 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
                                   'favouritedUsers': [' '],
                                 }, productsRecordReference);
 
-                                context.goNamed('MyProducts');
+                                context.goNamed('MyProductsPage');
 
                                 setState(() {});
                               },
