@@ -388,7 +388,11 @@ class _ProductDetailsPageWidgetState extends State<ProductDetailsPageWidget> {
                                                                       .width *
                                                                   0.85,
                                                           child:
-                                                              DeleteProductConfirmDialogWidget(),
+                                                              DeleteProductConfirmDialogWidget(
+                                                            productDataRef:
+                                                                widget
+                                                                    .productRef!,
+                                                          ),
                                                         ),
                                                       ),
                                                     );

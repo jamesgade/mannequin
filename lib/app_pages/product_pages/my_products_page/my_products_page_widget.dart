@@ -1,9 +1,11 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/ccmponents/delete_product_confirm_dialog/delete_product_confirm_dialog_widget.dart';
 import '/ccmponents/empty_lists/empty_my_products/empty_my_products_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -272,58 +274,206 @@ class _MyProductsPageWidgetState extends State<MyProductsPageWidget> {
                                                           fit: BoxFit.cover,
                                                         ),
                                                       ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    5.0,
-                                                                    5.0,
-                                                                    5.0,
-                                                                    5.0),
-                                                        child: Material(
-                                                          color: Colors
-                                                              .transparent,
-                                                          elevation: 1.0,
-                                                          shape:
-                                                              RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        50.0),
-                                                          ),
-                                                          child: Container(
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          50.0),
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .end,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        5.0,
+                                                                        5.0,
+                                                                        5.0,
+                                                                        5.0),
+                                                            child: InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                context
+                                                                    .pushNamed(
+                                                                  'EditProductPage',
+                                                                  queryParameters:
+                                                                      {
+                                                                    'productDataRef':
+                                                                        serializeParam(
+                                                                      gridViewProductsRecord
+                                                                          .reference,
+                                                                      ParamType
+                                                                          .DocumentReference,
+                                                                    ),
+                                                                  }.withoutNulls,
+                                                                );
+                                                              },
+                                                              child: Material(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                elevation: 1.0,
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              50.0),
+                                                                ),
+                                                                child:
+                                                                    Container(
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            50.0),
+                                                                  ),
+                                                                  child: Stack(
+                                                                    children: [
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            5.0,
+                                                                            5.0,
+                                                                            5.0,
+                                                                            5.0),
+                                                                        child:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .mode_edit,
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryText,
+                                                                          size:
+                                                                              22.0,
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
                                                             ),
-                                                            child: Stack(
-                                                              children: [
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                          ),
+                                                          Builder(
+                                                            builder:
+                                                                (context) =>
+                                                                    Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           5.0,
                                                                           5.0,
                                                                           5.0),
-                                                                  child: Icon(
-                                                                    Icons
-                                                                        .mode_edit,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryText,
-                                                                    size: 22.0,
+                                                              child: InkWell(
+                                                                splashColor: Colors
+                                                                    .transparent,
+                                                                focusColor: Colors
+                                                                    .transparent,
+                                                                hoverColor: Colors
+                                                                    .transparent,
+                                                                highlightColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                onTap:
+                                                                    () async {
+                                                                  await showAlignedDialog(
+                                                                    context:
+                                                                        context,
+                                                                    isGlobal:
+                                                                        true,
+                                                                    avoidOverflow:
+                                                                        false,
+                                                                    targetAnchor: AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0)
+                                                                        .resolve(
+                                                                            Directionality.of(context)),
+                                                                    followerAnchor: AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0)
+                                                                        .resolve(
+                                                                            Directionality.of(context)),
+                                                                    builder:
+                                                                        (dialogContext) {
+                                                                      return Material(
+                                                                        color: Colors
+                                                                            .transparent,
+                                                                        child:
+                                                                            GestureDetector(
+                                                                          onTap: () =>
+                                                                              FocusScope.of(context).requestFocus(_model.unfocusNode),
+                                                                          child:
+                                                                              Container(
+                                                                            width:
+                                                                                MediaQuery.sizeOf(context).width * 0.85,
+                                                                            child:
+                                                                                DeleteProductConfirmDialogWidget(
+                                                                              productDataRef: gridViewProductsRecord.reference,
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  ).then((value) =>
+                                                                      setState(
+                                                                          () {}));
+                                                                },
+                                                                child: Material(
+                                                                  color: Colors
+                                                                      .transparent,
+                                                                  elevation:
+                                                                      1.0,
+                                                                  shape:
+                                                                      RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            50.0),
+                                                                  ),
+                                                                  child:
+                                                                      Container(
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              50.0),
+                                                                    ),
+                                                                    child:
+                                                                        Stack(
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              5.0,
+                                                                              5.0,
+                                                                              5.0,
+                                                                              5.0),
+                                                                          child:
+                                                                              Icon(
+                                                                            Icons.delete,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryText,
+                                                                            size:
+                                                                                22.0,
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
                                                                   ),
                                                                 ),
-                                                              ],
+                                                              ),
                                                             ),
                                                           ),
-                                                        ),
+                                                        ],
                                                       ),
                                                     ],
                                                   ),

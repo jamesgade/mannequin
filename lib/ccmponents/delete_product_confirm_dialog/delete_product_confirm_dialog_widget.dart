@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,7 +10,14 @@ import 'delete_product_confirm_dialog_model.dart';
 export 'delete_product_confirm_dialog_model.dart';
 
 class DeleteProductConfirmDialogWidget extends StatefulWidget {
-  const DeleteProductConfirmDialogWidget({Key? key}) : super(key: key);
+  const DeleteProductConfirmDialogWidget({
+    Key? key,
+    required this.productDataRef,
+    this.shouldNavigateBack,
+  }) : super(key: key);
+
+  final DocumentReference? productDataRef;
+  final bool? shouldNavigateBack;
 
   @override
   _DeleteProductConfirmDialogWidgetState createState() =>
@@ -46,6 +54,7 @@ class _DeleteProductConfirmDialogWidgetState
       height: 150.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
+        borderRadius: BorderRadius.circular(8.0),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -82,8 +91,12 @@ class _DeleteProductConfirmDialogWidgetState
                   ),
                 ),
                 FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
+                  onPressed: () async {
+                    await widget.productDataRef!.delete();
+                    Navigator.pop(context);
+                    if (widget.shouldNavigateBack == true) {
+                      context.safePop();
+                    }
                   },
                   text: 'Delete',
                   options: FFButtonOptions(
