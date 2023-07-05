@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -14,10 +15,12 @@ class DeleteProductConfirmDialogWidget extends StatefulWidget {
     Key? key,
     required this.productDataRef,
     this.shouldNavigateBack,
+    required this.imageURLToDelete,
   }) : super(key: key);
 
   final DocumentReference? productDataRef;
   final bool? shouldNavigateBack;
+  final String? imageURLToDelete;
 
   @override
   _DeleteProductConfirmDialogWidgetState createState() =>
@@ -92,10 +95,21 @@ class _DeleteProductConfirmDialogWidgetState
                 ),
                 FFButtonWidget(
                   onPressed: () async {
-                    await widget.productDataRef!.delete();
-                    Navigator.pop(context);
                     if (widget.shouldNavigateBack == true) {
+                      await action_blocks.deleteProduct(
+                        context,
+                        productReference: widget.productDataRef,
+                        imageURL: widget.imageURLToDelete,
+                      );
                       context.safePop();
+                      Navigator.pop(context);
+                    } else {
+                      await action_blocks.deleteProduct(
+                        context,
+                        productReference: widget.productDataRef,
+                        imageURL: widget.imageURLToDelete,
+                      );
+                      Navigator.pop(context);
                     }
                   },
                   text: 'Delete',

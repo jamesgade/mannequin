@@ -6,7 +6,10 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:aligned_dialog/aligned_dialog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -30,6 +33,15 @@ class _MyProductsPageWidgetState extends State<MyProductsPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => MyProductsPageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.myProducts = await queryProductsRecordOnce(
+        queryBuilder: (productsRecord) =>
+            productsRecord.where('uid', isEqualTo: currentUserUid),
+        singleRecord: true,
+      ).then((s) => s.firstOrNull);
+    });
   }
 
   @override
@@ -130,6 +142,39 @@ class _MyProductsPageWidgetState extends State<MyProductsPageWidget> {
                                       fontFamily: 'Outfit',
                                       fontWeight: FontWeight.w300,
                                     ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    8.0, 0.0, 0.0, 0.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed('AddProductPage');
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.add,
+                                        color: Color(0xFF4E4EED),
+                                        size: 22.0,
+                                      ),
+                                      Text(
+                                        'add',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color: Color(0xFF4E4EED),
+                                            ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -417,6 +462,8 @@ class _MyProductsPageWidgetState extends State<MyProductsPageWidget> {
                                                                             child:
                                                                                 DeleteProductConfirmDialogWidget(
                                                                               productDataRef: gridViewProductsRecord.reference,
+                                                                              shouldNavigateBack: false,
+                                                                              imageURLToDelete: gridViewProductsRecord.thumbnail,
                                                                             ),
                                                                           ),
                                                                         ),

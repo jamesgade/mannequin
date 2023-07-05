@@ -392,6 +392,11 @@ class _ProductDetailsPageWidgetState extends State<ProductDetailsPageWidget> {
                                                             productDataRef:
                                                                 widget
                                                                     .productRef!,
+                                                            shouldNavigateBack:
+                                                                true,
+                                                            imageURLToDelete:
+                                                                productDetailsPageProductsRecord
+                                                                    .thumbnail,
                                                           ),
                                                         ),
                                                       ),
