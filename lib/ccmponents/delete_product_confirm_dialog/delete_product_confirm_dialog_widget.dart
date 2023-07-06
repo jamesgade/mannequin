@@ -74,8 +74,8 @@ class _DeleteProductConfirmDialogWidgetState
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
+                  onPressed: () async {
+                    Navigator.pop(context);
                   },
                   text: 'Cancel',
                   options: FFButtonOptions(

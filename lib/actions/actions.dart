@@ -10,6 +10,6 @@ Future deleteProduct(
   required DocumentReference? productReference,
   required String? imageURL,
 }) async {
-  await FirebaseStorage.instance.refFromURL(imageURL!).delete();
   await productReference!.delete();
+  await FirebaseStorage.instance.refFromURL(imageURL!).delete();
 }
