@@ -22,3 +22,11 @@ bool listContainsItem(
     return false;
   }
 }
+
+int lengthOfDocumentsArray(List<DocumentReference>? array) {
+  if (array == null || array.length == 0) {
+    return 0;
+  } else {
+    return array.length;
+  }
+}

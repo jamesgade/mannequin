@@ -123,13 +123,46 @@ class _WishlistPageWidgetState extends State<WishlistPageWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Text(
-                                'Wishlist',
+                                'Wishlist ',
                                 style: FlutterFlowTheme.of(context)
                                     .titleLarge
                                     .override(
                                       fontFamily: 'Outfit',
                                       fontWeight: FontWeight.w300,
                                     ),
+                              ),
+                              FutureBuilder<int>(
+                                future: queryProductsRecordCount(
+                                  queryBuilder: (productsRecord) =>
+                                      productsRecord.where('favouritedUsers',
+                                          arrayContains: currentUserUid),
+                                ),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50.0,
+                                        height: 50.0,
+                                        child: SpinKitThreeBounce(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          size: 50.0,
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  int textCount = snapshot.data!;
+                                  return Text(
+                                    textCount.toString(),
+                                    style: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .override(
+                                          fontFamily: 'Outfit',
+                                          fontWeight: FontWeight.w300,
+                                        ),
+                                  );
+                                },
                               ),
                             ],
                           ),

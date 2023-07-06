@@ -170,6 +170,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => EditProductPageWidget(
             productDataRef: params.getParam('productDataRef',
                 ParamType.DocumentReference, false, ['products']),
+            shouldNavigateBack:
+                params.getParam('shouldNavigateBack', ParamType.bool),
           ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),

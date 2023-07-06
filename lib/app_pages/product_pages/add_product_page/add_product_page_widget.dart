@@ -102,7 +102,7 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
                                       Text(
                                         'Add Product Image',
                                         style: FlutterFlowTheme.of(context)
-                                            .bodyLarge,
+                                            .bodyMedium,
                                       ),
                                     ],
                                   ),
@@ -394,7 +394,7 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
                                         Text(
                                           'Size',
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyLarge,
+                                              .bodyMedium,
                                         ),
                                       ],
                                     ),
@@ -467,7 +467,7 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
                                         Text(
                                           'Gender',
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyLarge,
+                                              .bodyMedium,
                                         ),
                                       ],
                                     ),
@@ -524,7 +524,7 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
                                         Text(
                                           'Category',
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyLarge,
+                                              .bodyMedium,
                                         ),
                                       ],
                                     ),
@@ -592,7 +592,7 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
                                         Text(
                                           'Provide link to buy this product :',
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyLarge,
+                                              .bodyMedium,
                                         ),
                                       ],
                                     ),

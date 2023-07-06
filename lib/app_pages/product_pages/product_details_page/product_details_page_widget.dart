@@ -298,6 +298,11 @@ class _ProductDetailsPageWidgetState extends State<ProductDetailsPageWidget> {
                                                     widget.productRef,
                                                     ParamType.DocumentReference,
                                                   ),
+                                                  'shouldNavigateBack':
+                                                      serializeParam(
+                                                    false,
+                                                    ParamType.bool,
+                                                  ),
                                                 }.withoutNulls,
                                               );
                                             },

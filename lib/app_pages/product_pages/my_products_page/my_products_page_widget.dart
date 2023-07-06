@@ -6,10 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:aligned_dialog/aligned_dialog.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,15 +30,6 @@ class _MyProductsPageWidgetState extends State<MyProductsPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => MyProductsPageModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.myProducts = await queryProductsRecordOnce(
-        queryBuilder: (productsRecord) =>
-            productsRecord.where('uid', isEqualTo: currentUserUid),
-        singleRecord: true,
-      ).then((s) => s.firstOrNull);
-    });
   }
 
   @override
@@ -78,14 +66,23 @@ class _MyProductsPageWidgetState extends State<MyProductsPageWidget> {
                       Padding(
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-                        child: Container(
-                          clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: Image.network(
-                            'https://cdn.dribbble.com/users/1419100/screenshots/6337844/image.png?resize=400x0',
-                            fit: BoxFit.fill,
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.goNamed('FeedPage');
+                          },
+                          child: Container(
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.network(
+                              'https://cdn.dribbble.com/users/1419100/screenshots/6337844/image.png?resize=400x0',
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
                       ),
@@ -133,46 +130,119 @@ class _MyProductsPageWidgetState extends State<MyProductsPageWidget> {
                               16.0, 0.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Text(
-                                'My Products',
-                                style: FlutterFlowTheme.of(context)
-                                    .titleLarge
-                                    .override(
-                                      fontFamily: 'Outfit',
-                                      fontWeight: FontWeight.w300,
-                                    ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 0.0, 0.0, 0.0),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    context.pushNamed('AddProductPage');
-                                  },
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.add,
-                                        color: Color(0xFF4E4EED),
-                                        size: 22.0,
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 8.0, 0.0),
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        context.safePop();
+                                      },
+                                      child: Icon(
+                                        Icons.arrow_back,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 26.0,
                                       ),
-                                      Text(
-                                        'add',
+                                    ),
+                                  ),
+                                  Text(
+                                    'My Products ',
+                                    style: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .override(
+                                          fontFamily: 'Outfit',
+                                          fontWeight: FontWeight.w300,
+                                        ),
+                                  ),
+                                  FutureBuilder<int>(
+                                    future: queryProductsRecordCount(
+                                      queryBuilder: (productsRecord) =>
+                                          productsRecord.where('uid',
+                                              isEqualTo: currentUserUid),
+                                    ),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50.0,
+                                            height: 50.0,
+                                            child: SpinKitThreeBounce(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              size: 50.0,
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      int textCount = snapshot.data!;
+                                      return Text(
+                                        '(${textCount.toString()})',
                                         style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                            .titleMedium
                                             .override(
                                               fontFamily: 'Readex Pro',
-                                              color: Color(0xFF4E4EED),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              fontWeight: FontWeight.w300,
                                             ),
-                                      ),
-                                    ],
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed('AddProductPage');
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        8.0, 8.0, 8.0, 8.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.add,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondary,
+                                          size: 22.0,
+                                        ),
+                                        Text(
+                                          'add',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -356,6 +426,12 @@ class _MyProductsPageWidgetState extends State<MyProductsPageWidget> {
                                                                           .reference,
                                                                       ParamType
                                                                           .DocumentReference,
+                                                                    ),
+                                                                    'shouldNavigateBack':
+                                                                        serializeParam(
+                                                                      true,
+                                                                      ParamType
+                                                                          .bool,
                                                                     ),
                                                                   }.withoutNulls,
                                                                 );

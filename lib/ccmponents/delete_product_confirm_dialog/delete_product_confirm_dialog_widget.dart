@@ -14,7 +14,7 @@ class DeleteProductConfirmDialogWidget extends StatefulWidget {
   const DeleteProductConfirmDialogWidget({
     Key? key,
     required this.productDataRef,
-    this.shouldNavigateBack,
+    required this.shouldNavigateBack,
     required this.imageURLToDelete,
   }) : super(key: key);
 
