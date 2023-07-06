@@ -584,7 +584,7 @@ class _MyProductsPageWidgetState extends State<MyProductsPageWidget> {
                                                                               Icon(
                                                                             Icons.delete,
                                                                             color:
-                                                                                FlutterFlowTheme.of(context).secondaryText,
+                                                                                FlutterFlowTheme.of(context).error,
                                                                             size:
                                                                                 22.0,
                                                                           ),

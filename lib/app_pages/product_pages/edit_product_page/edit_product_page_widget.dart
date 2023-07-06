@@ -12,6 +12,7 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -1033,6 +1034,11 @@ class _EditProductPageWidgetState extends State<EditProductPageWidget> {
                                             .validate()) {
                                       return;
                                     }
+                                    await FirebaseStorage.instance
+                                        .refFromURL(
+                                            editProductPageProductsRecord
+                                                .thumbnail)
+                                        .delete();
 
                                     await widget.productDataRef!
                                         .update(createProductsRecordData(

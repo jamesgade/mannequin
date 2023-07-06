@@ -154,7 +154,7 @@ class _WishlistPageWidgetState extends State<WishlistPageWidget> {
                                   }
                                   int textCount = snapshot.data!;
                                   return Text(
-                                    textCount.toString(),
+                                    '(${textCount.toString()})',
                                     style: FlutterFlowTheme.of(context)
                                         .titleLarge
                                         .override(

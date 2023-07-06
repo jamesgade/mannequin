@@ -68,7 +68,7 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
           ),
           actions: [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 0.0,
         ),
         body: SafeArea(
           top: true,
