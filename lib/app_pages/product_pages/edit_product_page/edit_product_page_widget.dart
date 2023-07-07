@@ -1047,7 +1047,12 @@ class _EditProductPageWidgetState extends State<EditProductPageWidget> {
                                       description: _model
                                           .productDescriptionTextFieldController
                                           .text,
-                                      thumbnail: _model.uploadedFileUrl,
+                                      thumbnail:
+                                          _model.uploadedFileUrl != null &&
+                                                  _model.uploadedFileUrl != ''
+                                              ? _model.uploadedFileUrl
+                                              : editProductPageProductsRecord
+                                                  .thumbnail,
                                       gender: _model.genderDropDownValue,
                                       category: _model.categoryDropDownValue,
                                       purchaseType:
