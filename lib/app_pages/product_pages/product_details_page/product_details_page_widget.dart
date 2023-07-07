@@ -592,7 +592,7 @@ class _ProductDetailsPageWidgetState extends State<ProductDetailsPageWidget> {
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
                                   await launchURL(
-                                      'wa.me${productDetailsPageProductsRecord.linkToBuy}');
+                                      'https://wa.me/${productDetailsPageProductsRecord.linkToBuy}');
                                 },
                                 child: Container(
                                   width: MediaQuery.sizeOf(context).width * 1.0,

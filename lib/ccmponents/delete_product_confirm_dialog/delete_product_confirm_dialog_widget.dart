@@ -101,8 +101,8 @@ class _DeleteProductConfirmDialogWidgetState
                         productReference: widget.productDataRef,
                         imageURL: widget.imageURLToDelete,
                       );
-                      context.safePop();
                       Navigator.pop(context);
+                      context.safePop();
                     } else {
                       await action_blocks.deleteProduct(
                         context,

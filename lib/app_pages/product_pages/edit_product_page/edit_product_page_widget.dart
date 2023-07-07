@@ -1027,18 +1027,17 @@ class _EditProductPageWidgetState extends State<EditProductPageWidget> {
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 30.0, 0.0, 30.0),
-                                child: FFButtonWidget(
-                                  onPressed: () async {
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onDoubleTap: () async {
                                     if (_model.formKey.currentState == null ||
                                         !_model.formKey.currentState!
                                             .validate()) {
                                       return;
                                     }
-                                    await FirebaseStorage.instance
-                                        .refFromURL(
-                                            editProductPageProductsRecord
-                                                .thumbnail)
-                                        .delete();
 
                                     await widget.productDataRef!
                                         .update(createProductsRecordData(
@@ -1086,27 +1085,147 @@ class _EditProductPageWidgetState extends State<EditProductPageWidget> {
                                     );
                                     context.safePop();
                                   },
-                                  text: 'Update Product',
-                                  options: FFButtonOptions(
-                                    width: double.infinity,
-                                    height: 45.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: Colors.white,
-                                        ),
-                                    elevation: 3.0,
-                                    borderSide: BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1.0,
+                                  onLongPress: () async {
+                                    await FirebaseStorage.instance
+                                        .refFromURL(
+                                            editProductPageProductsRecord
+                                                .thumbnail)
+                                        .delete();
+                                  },
+                                  child: FFButtonWidget(
+                                    onPressed: () async {
+                                      if (_model.formKey.currentState == null ||
+                                          !_model.formKey.currentState!
+                                              .validate()) {
+                                        return;
+                                      }
+                                      if (_model.uploadedFileUrl != null &&
+                                          _model.uploadedFileUrl != '') {
+                                        await FirebaseStorage.instance
+                                            .refFromURL(
+                                                editProductPageProductsRecord
+                                                    .thumbnail)
+                                            .delete();
+
+                                        await widget.productDataRef!
+                                            .update(createProductsRecordData(
+                                          name: _model
+                                              .productNameTextFieldController
+                                              .text,
+                                          description: _model
+                                              .productDescriptionTextFieldController
+                                              .text,
+                                          thumbnail: _model.uploadedFileUrl,
+                                          gender: _model.genderDropDownValue,
+                                          category:
+                                              _model.categoryDropDownValue,
+                                          purchaseType:
+                                              editProductPageProductsRecord
+                                                  .purchaseType,
+                                          linkToBuy:
+                                              _model.purchaseTypeChoiceChipsValue ==
+                                                      'whatsapp'
+                                                  ? _model
+                                                      .whatsappTextFieldController
+                                                      .text
+                                                  : _model
+                                                      .productLinkTextFieldController
+                                                      .text,
+                                          size: _model.sizeDropDownValue,
+                                        ));
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'Updated!',
+                                              style: TextStyle(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                              ),
+                                            ),
+                                            duration:
+                                                Duration(milliseconds: 4000),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .success,
+                                          ),
+                                        );
+                                        context.safePop();
+                                      } else {
+                                        await widget.productDataRef!
+                                            .update(createProductsRecordData(
+                                          name: _model
+                                              .productNameTextFieldController
+                                              .text,
+                                          description: _model
+                                              .productDescriptionTextFieldController
+                                              .text,
+                                          thumbnail:
+                                              editProductPageProductsRecord
+                                                  .thumbnail,
+                                          gender: _model.genderDropDownValue,
+                                          category:
+                                              _model.categoryDropDownValue,
+                                          purchaseType:
+                                              editProductPageProductsRecord
+                                                  .purchaseType,
+                                          linkToBuy:
+                                              _model.purchaseTypeChoiceChipsValue ==
+                                                      'whatsapp'
+                                                  ? _model
+                                                      .whatsappTextFieldController
+                                                      .text
+                                                  : _model
+                                                      .productLinkTextFieldController
+                                                      .text,
+                                          size: _model.sizeDropDownValue,
+                                        ));
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'Updated!',
+                                              style: TextStyle(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                              ),
+                                            ),
+                                            duration:
+                                                Duration(milliseconds: 4000),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .success,
+                                          ),
+                                        );
+                                        context.safePop();
+                                      }
+                                    },
+                                    text: 'Update Product',
+                                    options: FFButtonOptions(
+                                      width: double.infinity,
+                                      height: 45.0,
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 0.0),
+                                      iconPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: Colors.white,
+                                          ),
+                                      elevation: 3.0,
+                                      borderSide: BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(30.0),
                                     ),
-                                    borderRadius: BorderRadius.circular(30.0),
                                   ),
                                 ),
                               ),
