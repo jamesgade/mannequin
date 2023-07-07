@@ -500,13 +500,31 @@ class _ProductDetailsPageWidgetState extends State<ProductDetailsPageWidget> {
                                   ),
                             ),
                           ),
-                          Text(
-                            'Explore Influencer',
-                            style:
-                                FlutterFlowTheme.of(context).bodyLarge.override(
-                                      fontFamily: 'Readex Pro',
-                                      color: Color(0xFF4E4EED),
-                                    ),
+                          InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              context.pushNamed(
+                                'PublicProfilePage',
+                                queryParameters: {
+                                  'user': serializeParam(
+                                    productDetailsPageProductsRecord.userRef,
+                                    ParamType.DocumentReference,
+                                  ),
+                                }.withoutNulls,
+                              );
+                            },
+                            child: Text(
+                              'Explore Influencer',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Color(0xFF4E4EED),
+                                  ),
+                            ),
                           ),
                         ],
                       ),

@@ -67,9 +67,18 @@ class _PersonalizePageWidgetState extends State<PersonalizePageWidget> {
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 30.0, 0.0, 15.0),
-                            child: Text(
-                              'View My Profile',
-                              style: FlutterFlowTheme.of(context).bodyLarge,
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed('ProfilePage');
+                              },
+                              child: Text(
+                                'View My Profile',
+                                style: FlutterFlowTheme.of(context).bodyLarge,
+                              ),
                             ),
                           ),
                           Padding(
