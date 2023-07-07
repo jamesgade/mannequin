@@ -1132,6 +1132,7 @@ class _EditProductPageWidgetState extends State<EditProductPageWidget> {
                                                       .productLinkTextFieldController
                                                       .text,
                                           size: _model.sizeDropDownValue,
+                                          modifiedAt: getCurrentTimestamp,
                                         ));
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
@@ -1193,7 +1194,7 @@ class _EditProductPageWidgetState extends State<EditProductPageWidget> {
                                               ),
                                             ),
                                             duration:
-                                                Duration(milliseconds: 4000),
+                                                Duration(milliseconds: 2000),
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
                                                     .success,

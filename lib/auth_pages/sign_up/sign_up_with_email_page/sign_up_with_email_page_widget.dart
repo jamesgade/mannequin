@@ -433,6 +433,7 @@ class _SignUpWithEmailPageWidgetState extends State<SignUpWithEmailPageWidget> {
                                               .emailTextFieldController.text,
                                           displayName: _model
                                               .fullNameTextFieldController.text,
+                                          createdTime: getCurrentTimestamp,
                                         ));
 
                                     context.goNamedAuth(

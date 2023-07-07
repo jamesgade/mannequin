@@ -4,7 +4,7 @@ export '/auth_pages/sign_in/sign_in_with_email_page/sign_in_with_email_page_widg
 export '/app_pages/feed_page/feed_page_widget.dart' show FeedPageWidget;
 export '/app_pages/personalize_page/personalize_page_widget.dart'
     show PersonalizePageWidget;
-export '/app_pages/wishlist_page/wishlist_page_widget.dart'
+export '/app_pages/product_pages/wishlist_page/wishlist_page_widget.dart'
     show WishlistPageWidget;
 export '/app_pages/product_pages/add_product_page/add_product_page_widget.dart'
     show AddProductPageWidget;

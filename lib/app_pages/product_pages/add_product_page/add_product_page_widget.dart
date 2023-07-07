@@ -931,6 +931,7 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
                                     size: _model.sizeDropDownValue,
                                     uid: currentUserUid,
                                     influencerName: currentUserDisplayName,
+                                    createdAt: getCurrentTimestamp,
                                   ),
                                   'favouritedUsers': [' '],
                                 });
@@ -959,6 +960,7 @@ class _AddProductPageWidgetState extends State<AddProductPageWidget> {
                                     size: _model.sizeDropDownValue,
                                     uid: currentUserUid,
                                     influencerName: currentUserDisplayName,
+                                    createdAt: getCurrentTimestamp,
                                   ),
                                   'favouritedUsers': [' '],
                                 }, productsRecordReference);
