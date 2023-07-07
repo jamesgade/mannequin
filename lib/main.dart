@@ -121,7 +121,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'TrendingPage': TrendingPageWidget(),
       'AddProductPage': AddProductPageWidget(),
       'WishlistPage': WishlistPageWidget(),
-      'ProfilePage': ProfilePageWidget(),
+      'PersonalizePage': PersonalizePageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 

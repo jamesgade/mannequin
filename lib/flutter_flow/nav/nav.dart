@@ -99,11 +99,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : FeedPageWidget(),
         ),
         FFRoute(
-          name: 'ProfilePage',
-          path: '/profilePage',
+          name: 'PersonalizePage',
+          path: '/personalizePage',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'ProfilePage')
-              : ProfilePageWidget(),
+              ? NavBarPage(initialPage: 'PersonalizePage')
+              : PersonalizePageWidget(),
         ),
         FFRoute(
           name: 'WishlistPage',
@@ -173,6 +173,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             shouldNavigateBack:
                 params.getParam('shouldNavigateBack', ParamType.bool),
           ),
+        ),
+        FFRoute(
+          name: 'PublicProfilePage',
+          path: '/publicProfilePage',
+          builder: (context, params) => PublicProfilePageWidget(
+            user: params.getParam(
+                'user', ParamType.DocumentReference, false, ['users']),
+          ),
+        ),
+        FFRoute(
+          name: 'ProfilePage',
+          path: '/profilePage',
+          builder: (context, params) => ProfilePageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

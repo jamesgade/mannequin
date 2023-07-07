@@ -61,14 +61,23 @@ class _TrendingPageWidgetState extends State<TrendingPageWidget> {
                       Padding(
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-                        child: Container(
-                          clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: Image.network(
-                            'https://cdn.dribbble.com/users/1419100/screenshots/6337844/image.png?resize=400x0',
-                            fit: BoxFit.fill,
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.goNamed('FeedPage');
+                          },
+                          child: Container(
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.network(
+                              'https://cdn.dribbble.com/users/1419100/screenshots/6337844/image.png?resize=400x0',
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
                       ),
